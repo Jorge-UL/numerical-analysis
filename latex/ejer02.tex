@@ -1,0 +1,17 @@
+\paragraph{(a)}
+\paragraph{(b)}
+\paragraph{(c)}
+
+Sea $A\in\bC^{m\times n}$ ($m\geq n$), $A=U\Sigma V^*$ una descomposición en valores singulares de $A$, donde $\Sigma\in\bC^{m\times n}$. Sea $J\in\bC^{m\times n}$ la matriz con 1's en la diagonal principal, es decir, $J_{ij}=\delta_{ij}$ (no es necesariamente cuadrada). Como los elementos de la diagonal principal de $\Sigma$ son no negativos (y el resto de elementos on 0), entonces para todo $\epsilon>0$ la matriz $\Sigma+\epsilon J$ es de rango completo.
+
+Defina la sucesión
+\[
+	A_k=U\left(\Sigma+\frac{1}{k}J\right)V^*
+\]
+que está conformada por matrices de rango completo. Así
+\[
+	\Vert A_k-A\Vert_2=\frac{1}{k}\Vert UJV^*\Vert_2\to0
+	\quad\text{cuando }k\to\infty
+\]
+
+Por tanto, $A$ es límite de matrices de rango completo. Se concluye que el conjunto de matrices de rango completo es denso en $\bC^{m\times n}$.
