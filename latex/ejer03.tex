@@ -1,3 +1,23 @@
 \paragraph{(a)}
+Definimos $f(x)=\tan(x)-\sin(x)$, redondeando a 4 decimales
+	\begin{footnotesize}
+	\begin{center}\begin{tabular}{|c||c|c|c|}\hline
+			$x$    & $\quad{}0.91153\quad{}$& $\quad{}1.08265\quad{}$ & $\quad{}1.17959\quad{}$\\ \hline
+			$f(x)$ &$0.5000$ &$1.0000$ &$1.5000$ \\ \hline
+	\end{tabular}\end{center}
+\end{footnotesize}
 \paragraph{(b)}
+Construimos el polinomio de Lagrange de grado 2 para aproximar $f^{-1}$ utilizando los puntos anteriores:
+\begin{align*}
+p_2(x)&=0.91153\cdot\frac{(x-1)(x-1.5)}{(0.5-1)(0.5-1.5)}+1.08265\cdot\frac{(x-0.5)(x-1.5)}{(1-0.5)(1-1.5)}+1.17959\cdot\frac{(x-0.5)(x-1)}{(1.5-0.5)(1.5-1)}\\
+&= 0.91153(2x^2-5x+3)-1.08265(4x^2-8x+3)+1.17959(2x^2-3x+1)\\
+&=-0.14836x^2+0.56478x+0.66623
+\end{align*}
 \paragraph{(c)}
+Encontrar una soluci\'on aproximada a la ecuaci\'on $f(x)=0.436$ es equivalente a aproximar la imagen de $0.436$ bajo $f^{-1}$, as\'i, aproximando $f^{-1}$ con $p_2$ obtenemos
+$$p_2(0.436)=0.8842714374...$$
+Usando como soluci\'on exacta $\xi:=0.8783933784...$ vemos f\'acilmente que la aproximaci\'on tiene un d\'igito decimal correcto. Adem\'as el error relativo es aproximadamente:
+$$\frac{|p_2(0.436)-\xi|}{|\xi|}\approx\frac{|0.8842714374-0.8783933784|}{|0.8783933784|}=\frac{0.0058780590}{0.8783933784}\approx0.00669182981$$
+y note que:
+$$5\cdot10^{-3}<0.00669182981<5\cdot 10^{-2}$$
+por lo que tenemos dos d\'igitos significativos.
