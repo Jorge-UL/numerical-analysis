@@ -1,6 +1,87 @@
 \paragraph{(a)}
+Sea $F:\mathbb{R}^n\longrightarrow\mathbb{R}^n$. Suponga que $F(c)=0$, $J_F(c)$ es invertible y $F\in C^2(V)$ para $V$ un vecindario de $c$, queremos mostrar que para una selecci\'on de $x_0$ inicial suficientemente cerca de $c$ la iteraci\'on del m\'etodo de Newton converge a $c$.
+Considere la función:
+$$g(x)=x-(J_F(x))^{-1}F(x)$$
+$g$ tiene un punto fijo en $c$. Como $F$ es clase $C^2$, $g$ es clase $C^1$ y tiene sentido considerar $J_g(x)$.
+Veamos que $J_g(c)=0_{nxn}$ pues:\\
+Si $h(x)=(J_F(x))^{-1}F(x)=(h_i(x))_{1\leq i \leq n}$,  $[J_F(x)]^-1=(a_{ij}(x))_{1\leq i,j \leq n}$, $J_h(x)=(b_{ij}(x))_{1\leq i,j \leq n}$, entonces:
+$$h_i(x)=\sum_{k=1}^{n}a_{ik}(x)F_k(x)$$ y
+$$b_{ij}(x)=\dfrac{\partial c_i}{\partial x_j}(x)=\sum_{k=1}^{n}\dfrac{\partial a_{ik}}{\partial x_j}(x)F_k(x)+\sum_{k=1}^{n}a_{ik}(x)\dfrac{\partial F_k(x)}{\partial x_j}$$
+Note que al evaluar en $c$ la primera sumatoria se anula pues $F(c)=0$. Además como $\dfrac{\partial F_k(x)}{\partial x_j}(c)$ es la $(k,j)$-\'esima entrada de $J_F(c)$ entonces $$J_h(c)=[J_F(c)]^{-1}\cdot J_F(c)=I_{nxn}$$. Luego $J_g(c)=0_{nxn}$.
+Adem\'as existe $\epsilon>0$ tal que si $\overline{B}_\epsilon(c)\subset V$ es la bola cerrada de radio $\epsilon$ alrededor de $c$, entonces 
+$$\|J_g(x)\|_\infty<0.5,\ \forall x\in\overline{B}_\epsilon(c)$$
+Dados $x,y\in\bar{B_\epsilon}(c)$, por Teorema del valor medio existe $\eta\in(0,1)$ tal que 
+$$g_i(x)-g_i(y)=\nabla g_i(\eta x+(1-\eta)y)\cdot(x-y)=\sum_{k=1}^{n}(x_j-y_j)\dfrac{\partial g_i}{\partial x_j}(\eta x + (1-\eta)y)$$.
+Adem\'as como $|x_j-y_j|\leq\|x-y\|_\infty$ y $\|J_g(z)\|_\infty=\underset{1\leq i\leq n}{\max}\sum_{k=1}^{n}\left |\dfrac{\partial g_i}{\partial x_j}\right|$. Entonces
+$$|g_i(x)-g_i(y)|\leq\|x-y\|_\infty\|J_g(\eta x+(1-\eta)y)\|_\infty,\ \forall i=1,...,n$$.
+Ahora, si $x,y\in\overline{B}_\epsilon(c)$ tenemos:
+$$\|g(x)-g(y)\|_\infty\leq 0.5\|x-y\|_\infty$$
+Finalmente, si tomamos $y=c$ entonces tenemos que
+$$\|g(x)-c\|_\infty < \|x-c\|_\infty,\ \forall x\in\overline{B}_\epsilon(c)$$
+Luego, $g(\overline{B}_\epsilon(c))\subseteq\overline{B}_\epsilon(c)$, y se tiene que la sucesi\'on dada por $x^{(k)}=g(x^{(k-1)})$ converge a al \'unico punto fijo de $g$ en $\overline{B}_\epsilon(c)$ para cualquier selecci\'on de $x^{(0)}\in\overline{B}_\epsilon(c)$ incial, es decir, la iteraci\'on de Newton converge al cero de $F$. Para obtener la convergencia cuadr\'atica, considere el polinomio de Taylor para $F$ centrado en $x^{(k)}$:
+$$0=F(c)=F(x^{(k)})+J_F(x^{(k)})(c-x^{(k)})+\frac{1}{2}E_F$$
+donde $E_F$ incluye los t\'erminos de las segundas derivadas as\'i,
+$$\|E_F\|_\infty\leq n^3A\|c-x^{(k)}\|^2_\infty$$
+donde el t\'ermino $A:=\underset{1\leq i,j,l}{\max}\underset{x\in\overline{B}_\epsilon(c)}{\max}\left |\dfrac{\partial^2 F_i}{\partial x_j \partial x_l}(x)\right |$, el t\'ermino $n^3$ es de todas las combinaciones de $i,j,l$. Luego, de la expansi\'on de Taylor se obtiene
+$$x^{(k+1)}-c=x^{(k)}-c-[J_F(x^{(k)})]^{-1}f(x^{(k)})=\frac{1}{2}[J_F(x^{(k)})]^{-1}E_F$$
+y as\'i, si $C:=\underset{x\in\overline{B}_\epsilon(c)}{\max}\|[J_F(x)]^{-1}\|_\infty^2$, entonces
+$$\|x^{(k+1)}-c\|_\infty\leq\frac{1}{2}n^3CA\|x^{(k)}-c\|_\infty^2$$.
+De lo que se deduce que la convergencia es cuadr\'atica.
 \paragraph{(b)}
+Dado el sistema no lineal:
+$$
+\begin{cases}
+3x_1 \ - \ \cos(x_2 x_3) = 0.5,\\
+x_1^2 \ - \ 81(x_2+0.1)^2 \ + \ \sin(x_3) = -1.06,\\
+e^{-x_1 x_2} \ + \ 20x_3 = \frac{3-10\pi}{3}
+\end{cases}
+$$
+podemos reescribir el sistema por $f_1(x_1,x_2,x_3)=0$, $f_2(x_1,x_2,x_3)=0$,\\ $f_3(x_1,x_2,x_3)=0$ donde:
+\begin{align*}
+f_1(x_1,x_2,x_3)&=3x_1-\cos(x_2 x_3)-0.5,\\
+f_2(x_1,x_2,x_3)&=x_1^2-81(x_2+0.1)^2+\sin(x_3)+1.06,\\
+f_3(x_1,x_2,x_3)&=e^{-x_1 x_2}+20x_3-\dfrac{3-10\pi}{3}.
+\end{align*}
 \paragraph{(c)}
+La iteraci\'on de Newton para el sistema anterior viene dada por:
+$$\textbf{x}^{(k+1)} = \textbf{x}^{(k)} - \left[ J(\textbf{x}^{(k)}) \right]^{-1} \textbf{F}(\textbf{x}^{(k)})$$
+Donde $\textbf{F}$ es la funci\'on definida por el sistema, a la que se le desea hallar un cero:
+$$\textbf{F}(\textbf{x})=\textbf{F}(x_1,x_2,x_3)=\begin{pmatrix}
+3x_1-\cos(x_2x_3)-0.5\\
+x_1^2-81(x_2+0.1)^2+\sin(x_3)+1.06\\
+e^{-x_1x_2}+20x_3-\frac{3-10\pi}{3}
+\end{pmatrix}$$
+y $J$ es la matriz Jacobiana de $\textbf{F}$, explicitamente:
+$$J(x)=J(x_1,x_2,x_3)=
+\begin{pmatrix}
+3&x_3\sin(x_2 x_3)&x_2\sin(x_2x_3)\\
+2x_1&-162x_2-\frac{81}{5}&\cos(x_3)\\
+-x_2 e^{-x_1x_2}&-x_1 e^{-x_1x_2}&20
+\end{pmatrix}
+$$
 \paragraph{(d)}
+Aplicando la funci\'on en \textbf{(f)} para aproximar la soluci\'on al sistema tras 3 iteraciones del m\'etodo de Newton con $x^{(0)}=[0.1,0.1,-0.1]^t$ obtenemos:
+$$x^{(1)}\approx[0.4998696729,0.0194668485,-0.5215204719]^t$$
+$$x^{(2)}\approx[0.5000142402,0.0015885914,-0.5235569643]^t$$
+$$x^{(3)}\approx[0.5000001135,0.0000124448,-0.5235984501]^t$$
 \paragraph{(e)}
-\paragraph{(f)}
+El algoritmo para del m\'etodo de Newton es el siguiente:
+\begin{algorithm}
+	\KwIn{\\F: Funci\'on clase $C^1$\\
+		$x_0$: Aproximaci\'on inicial\\
+		tol: Tolerancia\\
+		itermax: M\'ximo de iteraciones}
+	\KwOut{Aproximaci\'on $x_k$ de la ra\'iz de F}
+	$k=1$;\\
+	$J=jacobian(F)$;\\
+	$err=||F(x_0)||$;\\
+	\While{$k\leq itermax\ \&\&\ err>tol$}{
+		$y_k=J(x_{k-1})\backslash(-F(x_{k-1}))$;\\
+		$x_k=x_{k-1}+y_k$;\\
+		$k=k+1$;\\
+		$err=||F(x_k)||$;
+	}
+	\caption{Algoritmo de Newton}
+\end{algorithm}
+\paragraph{(f)}.
+\lstinputlisting[language=MatLab]{Ejercicio5.m}
