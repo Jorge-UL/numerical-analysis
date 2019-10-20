@@ -32,7 +32,7 @@ if col~=1
     x0=x0.';
 end
 J=matlabFunction(jacobian(f),'vars',{x});
-err=norm(F(x0));
+err=tol+1;
 k=1;
 y=x0;
 while err>tol && k<=itermax
@@ -40,6 +40,6 @@ while err>tol && k<=itermax
     y=J(x0)\(-F(x0)); %se calcula -(J^-1)*F
     y=y+x0;
     k=k+1;
-    err=norm(F(y));
+    err=norm(y-x0)/norm(y);
 end
 end
